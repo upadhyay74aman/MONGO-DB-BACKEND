@@ -15,6 +15,10 @@ const User = mongoose.model("User", UserSchema);
 
 app.use(express.json());
 
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
+
 app.get("/users", async (req, res) => {
   try {
     const users = await User.find();
