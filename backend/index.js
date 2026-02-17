@@ -42,6 +42,9 @@ app.post("/register", async (req, res) => {
 
 app.put("/users/:id", async (req, res) => {
   try {
+    if (!req.body) {
+      return res.status(400).json({ message: "Request body cannot be empty" });
+    }
     const { username, email, password } = req.body;
     const updatedUser = await User.findByIdAndUpdate(
       req.params.id,
